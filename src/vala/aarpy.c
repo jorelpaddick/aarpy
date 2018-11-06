@@ -25,7 +25,7 @@ _vala_main (gchar** args,
 	FILE* _tmp0_;
 	status = 0;
 	_tmp0_ = stdout;
-	fprintf (_tmp0_, "aarpy - test");
+	fprintf (_tmp0_, "aarpy - test\n");
 	result = status;
 	return result;
 }
