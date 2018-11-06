@@ -5,6 +5,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #define TYPE_CLIENT (client_get_type ())
@@ -22,6 +24,7 @@ enum  {
 	CLIENT_NUM_PROPERTIES
 };
 static GParamSpec* client_properties[CLIENT_NUM_PROPERTIES];
+#define _g_free0(var) (var = (g_free (var), NULL))
 
 struct _Client {
 	GObject parent_instance;
@@ -32,27 +35,55 @@ struct _ClientClass {
 	GObjectClass parent_class;
 };
 
+struct _ClientPrivate {
+	gchar* mac_address;
+	gchar* ip_address;
+	gchar* name;
+};
 
+
+static gint Client_private_offset;
 static gpointer client_parent_class = NULL;
 
 GType client_get_type (void) G_GNUC_CONST;
-Client* client_new (void);
-Client* client_construct (GType object_type);
+Client* client_new (const gchar* mac,
+                    const gchar* ip,
+                    const gchar* name);
+Client* client_construct (GType object_type,
+                          const gchar* mac,
+                          const gchar* ip,
+                          const gchar* name);
+static void client_finalize (GObject * obj);
+
+
+static inline gpointer
+client_get_instance_private (Client* self)
+{
+	return G_STRUCT_MEMBER_P (self, Client_private_offset);
+}
 
 
 Client*
-client_construct (GType object_type)
+client_construct (GType object_type,
+                  const gchar* mac,
+                  const gchar* ip,
+                  const gchar* name)
 {
 	Client * self = NULL;
+	g_return_val_if_fail (mac != NULL, NULL);
+	g_return_val_if_fail (ip != NULL, NULL);
+	g_return_val_if_fail (name != NULL, NULL);
 	self = (Client*) g_object_new (object_type, NULL);
 	return self;
 }
 
 
 Client*
-client_new (void)
+client_new (const gchar* mac,
+            const gchar* ip,
+            const gchar* name)
 {
-	return client_construct (TYPE_CLIENT);
+	return client_construct (TYPE_CLIENT, mac, ip, name);
 }
 
 
@@ -60,12 +91,27 @@ static void
 client_class_init (ClientClass * klass)
 {
 	client_parent_class = g_type_class_peek_parent (klass);
+	g_type_class_adjust_private_offset (klass, &Client_private_offset);
+	G_OBJECT_CLASS (klass)->finalize = client_finalize;
 }
 
 
 static void
 client_instance_init (Client * self)
 {
+	self->priv = client_get_instance_private (self);
+}
+
+
+static void
+client_finalize (GObject * obj)
+{
+	Client * self;
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, TYPE_CLIENT, Client);
+	_g_free0 (self->priv->mac_address);
+	_g_free0 (self->priv->ip_address);
+	_g_free0 (self->priv->name);
+	G_OBJECT_CLASS (client_parent_class)->finalize (obj);
 }
 
 
@@ -84,6 +130,7 @@ client_get_type (void)
 		static const GTypeInfo g_define_type_info = { sizeof (ClientClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) client_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (Client), 0, (GInstanceInitFunc) client_instance_init, NULL };
 		GType client_type_id;
 		client_type_id = g_type_register_static (G_TYPE_OBJECT, "Client", &g_define_type_info, 0);
+		Client_private_offset = g_type_add_instance_private (client_type_id, sizeof (ClientPrivate));
 		g_once_init_leave (&client_type_id__volatile, client_type_id);
 	}
 	return client_type_id__volatile;

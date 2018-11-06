@@ -7,6 +7,13 @@
 ***************************************************************************/
 public class Client : Object
 {
-    // Mac Address
-    // Ip address
+    private string mac_address; // Mac Address of the client
+    private string ip_address; // Ip address of the client 
+    private string name; // Name of the client
+
+    // Constructor
+    public Client(string mac, string ip, string name)
+    {
+        
+    }
 }
