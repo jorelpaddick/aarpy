@@ -10,3 +10,5 @@ $(EXEC): $(MAIN)
 	valac $(MAIN) $(MODELS) -o $(EXEC)
 
 
+clean: 
+	rm -rf bin/*
