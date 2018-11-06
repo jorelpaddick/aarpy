@@ -2,7 +2,7 @@
 BIN_DIR=./bin
 EXEC=$(BIN_DIR)/aarpy
 
-MODELS=src/vala/model/*
+MODELS= src/vala/model/*.vala
 MAIN=src/vala/aarpy.vala
 
 
