@@ -23,9 +23,12 @@ _vala_main (gchar** args,
 	gint result = 0;
 	gint status = 0;
 	FILE* _tmp0_;
+	FILE* _tmp1_;
 	status = 0;
 	_tmp0_ = stdout;
-	fprintf (_tmp0_, "aarpy - test\n");
+	fprintf (_tmp0_, "[INFO] Starting aarpy\n");
+	_tmp1_ = stdout;
+	fprintf (_tmp1_, "[INFO] Stopping aarpy [%d]\n", status);
 	result = status;
 	return result;
 }
