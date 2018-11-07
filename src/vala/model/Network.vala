@@ -7,9 +7,7 @@
 ***************************************************************************/
 public class Network : Object
 {
-    // Clients
-    // Router
-    // Name
-    // Number of Clients?
-    // Other stuff
+    private List<Client> _clients; // List of Clients on the Network
+    private Client* _router; // Reference to the Router //TODO: Check syntax
+    private string _name; // Name of the Network
 }
