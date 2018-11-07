@@ -42,6 +42,10 @@
 *.idb
 *.pdb
 
+# Vim turds
+*.swp
+*.swo
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
