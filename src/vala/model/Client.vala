@@ -7,6 +7,7 @@
 ***************************************************************************/
 public class Client : Object
 {
+    //TODO: These fields might later become more than just strings
     private string _mac_address; // Mac Address of the client
     private string _ip_address; // Ip address of the client 
     private string _name; // Name of the client
