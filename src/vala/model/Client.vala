@@ -5,6 +5,8 @@
 * MODIFIED:
 * PURPOSE: Defines the object for representing clients on a network
 ***************************************************************************/
+namespace model{
+
 public class Client : Object
 {
     //TODO: These fields might later become more than just strings
@@ -44,4 +46,5 @@ public class Client : Object
         get { return _name; }
         set { _name = value; }
     }
-}
+} // END CLASS Client
+} // END NAMESPACE model

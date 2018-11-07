@@ -9,109 +9,109 @@
 #include <string.h>
 
 
-#define TYPE_CLIENT (client_get_type ())
-#define CLIENT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_CLIENT, Client))
-#define CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_CLIENT, ClientClass))
-#define IS_CLIENT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_CLIENT))
-#define IS_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_CLIENT))
-#define CLIENT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_CLIENT, ClientClass))
+#define MODEL_TYPE_CLIENT (model_client_get_type ())
+#define MODEL_CLIENT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), MODEL_TYPE_CLIENT, modelClient))
+#define MODEL_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), MODEL_TYPE_CLIENT, modelClientClass))
+#define MODEL_IS_CLIENT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), MODEL_TYPE_CLIENT))
+#define MODEL_IS_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), MODEL_TYPE_CLIENT))
+#define MODEL_CLIENT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), MODEL_TYPE_CLIENT, modelClientClass))
 
-typedef struct _Client Client;
-typedef struct _ClientClass ClientClass;
-typedef struct _ClientPrivate ClientPrivate;
+typedef struct _modelClient modelClient;
+typedef struct _modelClientClass modelClientClass;
+typedef struct _modelClientPrivate modelClientPrivate;
 enum  {
-	CLIENT_0_PROPERTY,
-	CLIENT_MAC_ADDRESS_PROPERTY,
-	CLIENT_IP_ADDRESS_PROPERTY,
-	CLIENT_NAME_PROPERTY,
-	CLIENT_NUM_PROPERTIES
+	MODEL_CLIENT_0_PROPERTY,
+	MODEL_CLIENT_MAC_ADDRESS_PROPERTY,
+	MODEL_CLIENT_IP_ADDRESS_PROPERTY,
+	MODEL_CLIENT_NAME_PROPERTY,
+	MODEL_CLIENT_NUM_PROPERTIES
 };
-static GParamSpec* client_properties[CLIENT_NUM_PROPERTIES];
+static GParamSpec* model_client_properties[MODEL_CLIENT_NUM_PROPERTIES];
 #define _g_free0(var) (var = (g_free (var), NULL))
 
-struct _Client {
+struct _modelClient {
 	GObject parent_instance;
-	ClientPrivate * priv;
+	modelClientPrivate * priv;
 };
 
-struct _ClientClass {
+struct _modelClientClass {
 	GObjectClass parent_class;
 };
 
-struct _ClientPrivate {
+struct _modelClientPrivate {
 	gchar* _mac_address;
 	gchar* _ip_address;
 	gchar* _name;
 };
 
 
-static gint Client_private_offset;
-static gpointer client_parent_class = NULL;
+static gint modelClient_private_offset;
+static gpointer model_client_parent_class = NULL;
 
-GType client_get_type (void) G_GNUC_CONST;
-Client* client_new (const gchar* mac,
-                    const gchar* ip,
-                    const gchar* name);
-Client* client_construct (GType object_type,
-                          const gchar* mac,
-                          const gchar* ip,
-                          const gchar* name);
-void client_set_mac_address (Client* self,
-                             const gchar* value);
-void client_set_ip_address (Client* self,
+GType model_client_get_type (void) G_GNUC_CONST;
+modelClient* model_client_new (const gchar* mac,
+                               const gchar* ip,
+                               const gchar* name);
+modelClient* model_client_construct (GType object_type,
+                                     const gchar* mac,
+                                     const gchar* ip,
+                                     const gchar* name);
+void model_client_set_mac_address (modelClient* self,
+                                   const gchar* value);
+void model_client_set_ip_address (modelClient* self,
+                                  const gchar* value);
+void model_client_set_name (modelClient* self,
                             const gchar* value);
-void client_set_name (Client* self,
-                      const gchar* value);
-const gchar* client_get_mac_address (Client* self);
-const gchar* client_get_ip_address (Client* self);
-const gchar* client_get_name (Client* self);
-static void client_finalize (GObject * obj);
-static void _vala_client_get_property (GObject * object,
-                                guint property_id,
-                                GValue * value,
-                                GParamSpec * pspec);
-static void _vala_client_set_property (GObject * object,
-                                guint property_id,
-                                const GValue * value,
-                                GParamSpec * pspec);
+const gchar* model_client_get_mac_address (modelClient* self);
+const gchar* model_client_get_ip_address (modelClient* self);
+const gchar* model_client_get_name (modelClient* self);
+static void model_client_finalize (GObject * obj);
+static void _vala_model_client_get_property (GObject * object,
+                                      guint property_id,
+                                      GValue * value,
+                                      GParamSpec * pspec);
+static void _vala_model_client_set_property (GObject * object,
+                                      guint property_id,
+                                      const GValue * value,
+                                      GParamSpec * pspec);
 
 
 static inline gpointer
-client_get_instance_private (Client* self)
+model_client_get_instance_private (modelClient* self)
 {
-	return G_STRUCT_MEMBER_P (self, Client_private_offset);
+	return G_STRUCT_MEMBER_P (self, modelClient_private_offset);
 }
 
 
-Client*
-client_construct (GType object_type,
-                  const gchar* mac,
-                  const gchar* ip,
-                  const gchar* name)
+modelClient*
+model_client_construct (GType object_type,
+                        const gchar* mac,
+                        const gchar* ip,
+                        const gchar* name)
 {
-	Client * self = NULL;
+	modelClient * self = NULL;
 	g_return_val_if_fail (mac != NULL, NULL);
 	g_return_val_if_fail (ip != NULL, NULL);
 	g_return_val_if_fail (name != NULL, NULL);
-	self = (Client*) g_object_new (object_type, NULL);
-	client_set_mac_address (self, "ff:ff:ff:ff:ff:ff");
-	client_set_ip_address (self, "255.255.255.255");
-	client_set_name (self, "Unknown");
+	self = (modelClient*) g_object_new (object_type, NULL);
+	model_client_set_mac_address (self, "ff:ff:ff:ff:ff:ff");
+	model_client_set_ip_address (self, "255.255.255.255");
+	model_client_set_name (self, "Unknown");
 	return self;
 }
 
 
-Client*
-client_new (const gchar* mac,
-            const gchar* ip,
-            const gchar* name)
+modelClient*
+model_client_new (const gchar* mac,
+                  const gchar* ip,
+                  const gchar* name)
 {
-	return client_construct (TYPE_CLIENT, mac, ip, name);
+	return model_client_construct (MODEL_TYPE_CLIENT, mac, ip, name);
 }
 
 
 const gchar*
-client_get_mac_address (Client* self)
+model_client_get_mac_address (modelClient* self)
 {
 	const gchar* result;
 	const gchar* _tmp0_;
@@ -123,20 +123,20 @@ client_get_mac_address (Client* self)
 
 
 void
-client_set_mac_address (Client* self,
-                        const gchar* value)
+model_client_set_mac_address (modelClient* self,
+                              const gchar* value)
 {
 	gchar* _tmp0_;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = g_strdup (value);
 	_g_free0 (self->priv->_mac_address);
 	self->priv->_mac_address = _tmp0_;
-	g_object_notify_by_pspec ((GObject *) self, client_properties[CLIENT_MAC_ADDRESS_PROPERTY]);
+	g_object_notify_by_pspec ((GObject *) self, model_client_properties[MODEL_CLIENT_MAC_ADDRESS_PROPERTY]);
 }
 
 
 const gchar*
-client_get_ip_address (Client* self)
+model_client_get_ip_address (modelClient* self)
 {
 	const gchar* result;
 	const gchar* _tmp0_;
@@ -148,20 +148,20 @@ client_get_ip_address (Client* self)
 
 
 void
-client_set_ip_address (Client* self,
-                       const gchar* value)
+model_client_set_ip_address (modelClient* self,
+                             const gchar* value)
 {
 	gchar* _tmp0_;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = g_strdup (value);
 	_g_free0 (self->priv->_ip_address);
 	self->priv->_ip_address = _tmp0_;
-	g_object_notify_by_pspec ((GObject *) self, client_properties[CLIENT_IP_ADDRESS_PROPERTY]);
+	g_object_notify_by_pspec ((GObject *) self, model_client_properties[MODEL_CLIENT_IP_ADDRESS_PROPERTY]);
 }
 
 
 const gchar*
-client_get_name (Client* self)
+model_client_get_name (modelClient* self)
 {
 	const gchar* result;
 	const gchar* _tmp0_;
@@ -173,90 +173,83 @@ client_get_name (Client* self)
 
 
 void
-client_set_name (Client* self,
-                 const gchar* value)
+model_client_set_name (modelClient* self,
+                       const gchar* value)
 {
 	gchar* _tmp0_;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = g_strdup (value);
 	_g_free0 (self->priv->_name);
 	self->priv->_name = _tmp0_;
-	g_object_notify_by_pspec ((GObject *) self, client_properties[CLIENT_NAME_PROPERTY]);
+	g_object_notify_by_pspec ((GObject *) self, model_client_properties[MODEL_CLIENT_NAME_PROPERTY]);
 }
 
 
 static void
-client_class_init (ClientClass * klass)
+model_client_class_init (modelClientClass * klass)
 {
-	client_parent_class = g_type_class_peek_parent (klass);
-	g_type_class_adjust_private_offset (klass, &Client_private_offset);
-	G_OBJECT_CLASS (klass)->get_property = _vala_client_get_property;
-	G_OBJECT_CLASS (klass)->set_property = _vala_client_set_property;
-	G_OBJECT_CLASS (klass)->finalize = client_finalize;
-	g_object_class_install_property (G_OBJECT_CLASS (klass), CLIENT_MAC_ADDRESS_PROPERTY, client_properties[CLIENT_MAC_ADDRESS_PROPERTY] = g_param_spec_string ("mac-address", "MAC Address", "The MAC Address of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
-	g_object_class_install_property (G_OBJECT_CLASS (klass), CLIENT_IP_ADDRESS_PROPERTY, client_properties[CLIENT_IP_ADDRESS_PROPERTY] = g_param_spec_string ("ip-address", "IP Address", "The IP Address of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
-	g_object_class_install_property (G_OBJECT_CLASS (klass), CLIENT_NAME_PROPERTY, client_properties[CLIENT_NAME_PROPERTY] = g_param_spec_string ("name", "Name", "The Name of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
+	model_client_parent_class = g_type_class_peek_parent (klass);
+	g_type_class_adjust_private_offset (klass, &modelClient_private_offset);
+	G_OBJECT_CLASS (klass)->get_property = _vala_model_client_get_property;
+	G_OBJECT_CLASS (klass)->set_property = _vala_model_client_set_property;
+	G_OBJECT_CLASS (klass)->finalize = model_client_finalize;
+	g_object_class_install_property (G_OBJECT_CLASS (klass), MODEL_CLIENT_MAC_ADDRESS_PROPERTY, model_client_properties[MODEL_CLIENT_MAC_ADDRESS_PROPERTY] = g_param_spec_string ("mac-address", "MAC Address", "The MAC Address of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
+	g_object_class_install_property (G_OBJECT_CLASS (klass), MODEL_CLIENT_IP_ADDRESS_PROPERTY, model_client_properties[MODEL_CLIENT_IP_ADDRESS_PROPERTY] = g_param_spec_string ("ip-address", "IP Address", "The IP Address of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
+	g_object_class_install_property (G_OBJECT_CLASS (klass), MODEL_CLIENT_NAME_PROPERTY, model_client_properties[MODEL_CLIENT_NAME_PROPERTY] = g_param_spec_string ("name", "Name", "The Name of the Client", NULL, G_PARAM_STATIC_STRINGS | G_PARAM_READABLE | G_PARAM_WRITABLE));
 }
 
 
 static void
-client_instance_init (Client * self)
+model_client_instance_init (modelClient * self)
 {
-	self->priv = client_get_instance_private (self);
+	self->priv = model_client_get_instance_private (self);
 }
 
 
 static void
-client_finalize (GObject * obj)
+model_client_finalize (GObject * obj)
 {
-	Client * self;
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, TYPE_CLIENT, Client);
+	modelClient * self;
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, MODEL_TYPE_CLIENT, modelClient);
 	_g_free0 (self->priv->_mac_address);
 	_g_free0 (self->priv->_ip_address);
 	_g_free0 (self->priv->_name);
-	G_OBJECT_CLASS (client_parent_class)->finalize (obj);
+	G_OBJECT_CLASS (model_client_parent_class)->finalize (obj);
 }
 
 
-/**************************************************************************
-* AUTHOR: Jorel Paddick
-* FILE NAME: Client.vala
-* CREATED: 06-11-2018
-* MODIFIED:
-* PURPOSE: Defines the object for representing clients on a network
-***************************************************************************/
 GType
-client_get_type (void)
+model_client_get_type (void)
 {
-	static volatile gsize client_type_id__volatile = 0;
-	if (g_once_init_enter (&client_type_id__volatile)) {
-		static const GTypeInfo g_define_type_info = { sizeof (ClientClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) client_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (Client), 0, (GInstanceInitFunc) client_instance_init, NULL };
-		GType client_type_id;
-		client_type_id = g_type_register_static (G_TYPE_OBJECT, "Client", &g_define_type_info, 0);
-		Client_private_offset = g_type_add_instance_private (client_type_id, sizeof (ClientPrivate));
-		g_once_init_leave (&client_type_id__volatile, client_type_id);
+	static volatile gsize model_client_type_id__volatile = 0;
+	if (g_once_init_enter (&model_client_type_id__volatile)) {
+		static const GTypeInfo g_define_type_info = { sizeof (modelClientClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) model_client_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (modelClient), 0, (GInstanceInitFunc) model_client_instance_init, NULL };
+		GType model_client_type_id;
+		model_client_type_id = g_type_register_static (G_TYPE_OBJECT, "modelClient", &g_define_type_info, 0);
+		modelClient_private_offset = g_type_add_instance_private (model_client_type_id, sizeof (modelClientPrivate));
+		g_once_init_leave (&model_client_type_id__volatile, model_client_type_id);
 	}
-	return client_type_id__volatile;
+	return model_client_type_id__volatile;
 }
 
 
 static void
-_vala_client_get_property (GObject * object,
-                           guint property_id,
-                           GValue * value,
-                           GParamSpec * pspec)
+_vala_model_client_get_property (GObject * object,
+                                 guint property_id,
+                                 GValue * value,
+                                 GParamSpec * pspec)
 {
-	Client * self;
-	self = G_TYPE_CHECK_INSTANCE_CAST (object, TYPE_CLIENT, Client);
+	modelClient * self;
+	self = G_TYPE_CHECK_INSTANCE_CAST (object, MODEL_TYPE_CLIENT, modelClient);
 	switch (property_id) {
-		case CLIENT_MAC_ADDRESS_PROPERTY:
-		g_value_set_string (value, client_get_mac_address (self));
+		case MODEL_CLIENT_MAC_ADDRESS_PROPERTY:
+		g_value_set_string (value, model_client_get_mac_address (self));
 		break;
-		case CLIENT_IP_ADDRESS_PROPERTY:
-		g_value_set_string (value, client_get_ip_address (self));
+		case MODEL_CLIENT_IP_ADDRESS_PROPERTY:
+		g_value_set_string (value, model_client_get_ip_address (self));
 		break;
-		case CLIENT_NAME_PROPERTY:
-		g_value_set_string (value, client_get_name (self));
+		case MODEL_CLIENT_NAME_PROPERTY:
+		g_value_set_string (value, model_client_get_name (self));
 		break;
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -266,22 +259,22 @@ _vala_client_get_property (GObject * object,
 
 
 static void
-_vala_client_set_property (GObject * object,
-                           guint property_id,
-                           const GValue * value,
-                           GParamSpec * pspec)
+_vala_model_client_set_property (GObject * object,
+                                 guint property_id,
+                                 const GValue * value,
+                                 GParamSpec * pspec)
 {
-	Client * self;
-	self = G_TYPE_CHECK_INSTANCE_CAST (object, TYPE_CLIENT, Client);
+	modelClient * self;
+	self = G_TYPE_CHECK_INSTANCE_CAST (object, MODEL_TYPE_CLIENT, modelClient);
 	switch (property_id) {
-		case CLIENT_MAC_ADDRESS_PROPERTY:
-		client_set_mac_address (self, g_value_get_string (value));
+		case MODEL_CLIENT_MAC_ADDRESS_PROPERTY:
+		model_client_set_mac_address (self, g_value_get_string (value));
 		break;
-		case CLIENT_IP_ADDRESS_PROPERTY:
-		client_set_ip_address (self, g_value_get_string (value));
+		case MODEL_CLIENT_IP_ADDRESS_PROPERTY:
+		model_client_set_ip_address (self, g_value_get_string (value));
 		break;
-		case CLIENT_NAME_PROPERTY:
-		client_set_name (self, g_value_get_string (value));
+		case MODEL_CLIENT_NAME_PROPERTY:
+		model_client_set_name (self, g_value_get_string (value));
 		break;
 		default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

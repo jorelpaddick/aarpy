@@ -5,6 +5,8 @@
 * MODIFIED:                                                                
 * PURPOSE: Defines a class for representing a network of Clients
 ***************************************************************************/
+namespace model{
+
 public class Network : Object
 {
     private List<Client> _clients; // List of Clients on the Network
@@ -20,4 +22,5 @@ public class Network : Object
     {
         // Stub FIXME
     }
-}
+} // END CLASS Network
+} // END NAMESPACE model
