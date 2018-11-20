@@ -16,7 +16,7 @@ public class Client : Object
     private string _name; // Name of the client
 
     // Constructor
-    public Client(string mac, string ip, string name)
+    public Client()
     {
         this.mac_address = "ff:ff:ff:ff:ff:ff"; // Set to broadcast
         this.ip_address= "255.255.255.255"; // Set to broadcast
@@ -40,12 +40,24 @@ public class Client : Object
         set { _ip_address = value; }
     }
 
-    [Description(nick = "Name", 
-                 blurb = "The Name of the Client")]
+    [Description(nick = "name", 
+                 blurb = "the Name of the Client")]
     public string name 
     {
         get { return _name; }
         set { _name = value; }
+    }
+
+    [Description(nick = "toString",
+                 blurb = "a dump of the client class fields")]
+    public string to_string()
+    {
+        string dump = "";
+        dump += "Mac Address: " + this.mac_address + "\n";
+        dump += "IP Address: " + this.ip_address + "\n";
+        dump += "Client Name: " + this.name + "\n";
+
+        return dump;
     }
 } // END CLASS Client
 } // END NAMESPACE model
