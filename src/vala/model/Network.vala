@@ -15,12 +15,26 @@ public class Network : Object
 
     public Network()
     {
-        _clients = new List<Client>();
+        _clients = new List<Client>(); // Initialise the client list
+    }
+
+    public List<Client> clients
+    {
+        get { return _clients; }
     }
 
     public void add_client(Client client)
     {
-        // Stub FIXME
+        this.clients.add(client);
+    }
+
+    public string to_string()
+    {
+        string dump = "";
+        foreach (var client in clients) 
+        {
+            dump += client.to_string() "\n";
+        }
     }
 } // END CLASS Network
 } // END NAMESPACE model
