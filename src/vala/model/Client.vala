@@ -5,7 +5,8 @@
 * MODIFIED:
 * PURPOSE: Defines the object for representing clients on a network
 ***************************************************************************/
-namespace model{
+namespace model
+{
 
 public class Client : Object
 {
@@ -31,7 +32,7 @@ public class Client : Object
         set { _mac_address = value; }
     }
 
-    [Description(nick = "IP Address", 
+    [Description(nick = "IP Addresss", 
                  blurb = "The IP Address of the Client")]
     public string ip_address 
     {

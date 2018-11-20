@@ -10,7 +10,10 @@ using model;
 // Entry point of the test
 int main()
 {
-    stdio.printf("**** Client Class Test ****");
-    stdio.printf("[INFO] Starting Test...");
-    stdio.printf("[INFO] Ending Test...");
+    int status = 0;
+    stdout.printf("**** Client Class Test ****\n");
+    stdout.printf("[INFO] Starting Test...\n");
+    stdout.printf("[INFO] Ending Test...\n");
+
+    return status;
 }
