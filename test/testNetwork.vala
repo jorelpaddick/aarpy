@@ -17,10 +17,13 @@
     Client client1 = new Client();
     Client client2 = new Client();
     Client client3 = new Client();
-    Network networks = new Network();
+    Network network = new Network();
     client1.name = "pamala";
     client2.name = "stan";
     client3.name = "murphy";
+    network.add_client(client1);
+    network.add_client(client2);
+    network.add_client(client3);
     stdout.printf("%s", network.to_string());
     stdout.printf("[INFO] Ending Test...\n");
 

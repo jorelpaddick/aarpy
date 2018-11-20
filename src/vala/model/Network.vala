@@ -5,20 +5,21 @@
 * MODIFIED:                                                                
 * PURPOSE: Defines a class for representing a network of Clients
 ***************************************************************************/
+using Gee;
 namespace model{
 
 public class Network : Object
 {
-    private List<Client> _clients; // List of Clients on the Network
+    private LinkedList<Client> _clients; // List of Clients on the Network
     private Client* _router; // Reference to the Router //TODO: Check syntax
     private string _name; // Name of the Network
 
     public Network()
     {
-        _clients = new List<Client>(); // Initialise the client list
+        _clients = new LinkedList<Client>(); // Initialise the client list
     }
 
-    public List<Client> clients
+    public LinkedList<Client> clients
     {
         get { return _clients; }
     }
@@ -33,8 +34,10 @@ public class Network : Object
         string dump = "";
         foreach (var client in clients) 
         {
-            dump += client.to_string() "\n";
+            dump += client.to_string() + "\n";
         }
+
+        return dump;
     }
 } // END CLASS Network
 } // END NAMESPACE model
